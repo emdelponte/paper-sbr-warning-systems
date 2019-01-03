@@ -1,0 +1,6 @@
+% Introduction
+
+This website documents the analysis performed for the research paper on the evaluation of performance and profitability of warning systems for the control of soybean rust in Brazil. A total of 29 experiments were conducted and two variations of a rainfall and an infection-based models were evaluated and compared with the calendarized applications. 
+
+
+

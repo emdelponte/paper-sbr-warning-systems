@@ -1,0 +1,28 @@
+% Data
+
+```{r}
+
+```
+
+The data were organized in a google sheet file and are permanently stored at the Open Science Framework and can be citable as:
+
+
+
+The data were organized in a Google sheet file which can be read directly using the *gsheet* package. Let's create the dataset and name it as `dataws`. 
+
+Let's have a quick look at the dataset.
+
+```{r}
+dataws <- gsheet::gsheet2tbl(
+  "https://docs.google.com/spreadsheets/d/1P3wzN-nQiSKBjfN9u_MADAAtTpBeyAObzhwVybD5b3w/edit#gid=931758392"
+)
+dataws
+
+```
+
+As shown below, the dataset is organized in 23 colums and 656 rows. Each row is one replicate of the treatment. 
+
+```{r}
+dplyr::glimpse(dataws)
+
+```

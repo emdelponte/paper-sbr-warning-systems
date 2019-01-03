@@ -1,0 +1,1137 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+
+
+
+
+<title>Code</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/font-awesome-5.0.13/css/fa-svg-with-js.css" rel="stylesheet" />
+<script src="site_libs/font-awesome-5.0.13/js/fontawesome-all.min.js"></script>
+<script src="site_libs/font-awesome-5.0.13/js/fa-v4-shims.min.js"></script>
+
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+
+</head>
+
+<body>
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+  height: auto;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 60px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+
+.section h2 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h3 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h4 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h5 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+.section h6 {
+  padding-top: 65px;
+  margin-top: -65px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+
+<div class="container-fluid main-container">
+
+<!-- tabsets -->
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+</script>
+
+<!-- code folding -->
+
+
+
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = false;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+  padding-left: 25px;
+  text-indent: 0;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Warning systems soybean rust</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa fa fa-home"></span>
+     
+    About
+  </a>
+</li>
+<li>
+  <a href="data.html">
+    <span class="fa fa fa fa-table"></span>
+     
+    Data
+  </a>
+</li>
+<li>
+  <a href="code.html">
+    <span class="fa fa fa fa-file-code-o"></span>
+     
+    Analysis
+  </a>
+</li>
+<li>
+  <a href="plots.html">
+    <span class="fa fa-bar-chart"></span>
+     
+    Plots
+  </a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/emdelponte/research-compendium-website">
+    <span class="fa fa-github-square"></span>
+     
+    source
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Code</h1>
+
+</div>
+
+
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Set the default theme for the ggplot2 plots</span>
+<span class="kw">library</span>(tidyverse)
+<span class="kw">theme_set</span>(<span class="kw">theme_light</span>())
+<span class="kw">library</span>(ggthemes)</code></pre></div>
+<div id="read-data" class="section level2">
+<h2>Read data</h2>
+<p>The data were organized in a Google sheet file which can be read directly using the <em>gsheet</em> package. Let’s create the dataset and name it as <code>dataws</code>.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws &lt;-<span class="st"> </span>gsheet<span class="op">::</span><span class="kw">gsheet2tbl</span>(
+  <span class="st">&quot;https://docs.google.com/spreadsheets/d/1P3wzN-nQiSKBjfN9u_MADAAtTpBeyAObzhwVybD5b3w/edit#gid=931758392&quot;</span>
+)</code></pre></div>
+</div>
+<div id="exploratory-analysis" class="section level2">
+<h2>Exploratory analysis</h2>
+<div id="experiments-and-treatments" class="section level3">
+<h3>Experiments and treatments</h3>
+<p>Let’s explore the data on the epidemics and yield in all experiments. We need the <em>tidyverse</em> package, which is a collection of several packages, to facilitate our analysis.</p>
+<p>Number of experiments:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">max</span>(dataws<span class="op">$</span>trial_number)</code></pre></div>
+<pre><code>## [1] 29</code></pre>
+<p>Experiments by treatment and source:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table</span>(dataws<span class="op">$</span>treatment, dataws<span class="op">$</span>source)<span class="op">/</span><span class="dv">4</span></code></pre></div>
+<pre><code>##        
+##         Beruski DWSys
+##   CAL        24     5
+##   DSV50      24     5
+##   DSV80      24     5
+##   DVIP6      24     0
+##   DVIP9      24     0
+##   UNT        24     5</code></pre>
+<p>Planting dates:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(janitor)
+dataws <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st"> </span><span class="kw">distinct</span>(planting_date, planting_order, planting_month) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tabyl</span>(planting_month) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">arrange</span>(<span class="op">-</span>n)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["planting_month"],"name":[1],"type":["chr"],"align":["left"]},{"label":["n"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["percent"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Dec","2":"8","3":"0.2857143"},{"1":"Nov","2":"7","3":"0.2500000"},{"1":"Jan","2":"5","3":"0.1785714"},{"1":"Oct","2":"5","3":"0.1785714"},{"1":"Feb","2":"3","3":"0.1071429"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Number of trials where soybean rust severity was obtained.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(sev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tabyl</span>(trial_number) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">nrow</span>()</code></pre></div>
+<pre><code>## [1] 21</code></pre>
+<p>Number of trials where AUDPC was obtained.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(audpc <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tabyl</span>(trial_number) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">nrow</span>()</code></pre></div>
+<pre><code>## [1] 16</code></pre>
+<p>Number of trials where yield was obtained.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(yld <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">tabyl</span>(trial_number) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">nrow</span>()</code></pre></div>
+<pre><code>## [1] 28</code></pre>
+</div>
+<div id="disease-pressure" class="section level3">
+<h3>Disease pressure</h3>
+<p>We will filter the untreated check plots and inspect the variation in the mean and standard deviation of disease severity for each trial, which provides an overview of the “disease pressure”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;treatment2&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;trial_number&quot;</span>, <span class="st">&quot;trial_code&quot;</span>), <span class="dt">remove =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, treatment2, harvest_season, trial_code) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_sev =</span> <span class="kw">mean</span>(sev), 
+            <span class="dt">sd_sev =</span> <span class="kw">sd</span>(sev)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(treatment2, mean_sev), mean_sev,
+              <span class="dt">color =</span> <span class="kw">factor</span>(harvest_season),
+             <span class="dt">shape =</span> trial_code)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> mean_sev <span class="op">-</span><span class="st"> </span>sd_sev, 
+                    <span class="dt">ymax =</span> mean_sev <span class="op">+</span><span class="st"> </span>sd_sev), 
+                <span class="dt">width =</span> <span class="fl">0.3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>, 
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">   </span><span class="kw">labs</span>(
+    <span class="dt">y =</span> <span class="st">&quot;Mean severity check treament (%)&quot;</span>,
+    <span class="dt">x =</span> <span class="st">&quot;Trial number&quot;</span>,
+    <span class="dt">shape =</span> <span class="st">&quot;Location&quot;</span>
+  )<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_tableau</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>harvest_season, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+</div>
+<div id="baseline-yield" class="section level3">
+<h3>Baseline yield</h3>
+<p>We do the same for what we call baseline yield, which is the actual yields for the situations where no fungicide was applied (yield in the check treatment).</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(yld <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;treatment2&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;trial_number&quot;</span>, <span class="st">&quot;trial_code&quot;</span>), <span class="dt">remove =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, treatment2, harvest_season, trial_code) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_yld =</span> <span class="kw">mean</span>(yld), <span class="dt">sd_yld =</span> <span class="kw">sd</span>(yld)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(treatment2, mean_yld), mean_yld, 
+             <span class="dt">color =</span> <span class="kw">factor</span>(harvest_season),
+             <span class="dt">shape =</span> trial_code)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> mean_yld <span class="op">-</span><span class="st"> </span>sd_yld, <span class="dt">ymax =</span> mean_yld <span class="op">+</span><span class="st"> </span>sd_yld),
+                <span class="dt">width =</span> <span class="fl">0.3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>, 
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">angle =</span> <span class="dv">90</span>, <span class="dt">hjust =</span> <span class="dv">1</span>)) <span class="op">+</span>
+<span class="st">   </span><span class="kw">labs</span>(
+    <span class="dt">y =</span> <span class="st">&quot;Mean yield (kg/ha)&quot;</span>,
+    <span class="dt">x =</span> <span class="st">&quot;Trial code&quot;</span>,
+    <span class="dt">color =</span> <span class="st">&quot;Harvest season&quot;</span>,
+    <span class="dt">shape =</span> <span class="st">&quot;Location&quot;</span>
+  )<span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_tableau</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>harvest_season, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Now, let’s have a look at the variation in severity by planting date, irrespectively of the trial location.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;treatment2&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;trial_number&quot;</span>, <span class="st">&quot;treatment&quot;</span>), <span class="dt">remove =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(planting_month, planting_order), sev, 
+             <span class="dt">fill =</span> <span class="kw">factor</span>(harvest_season))) <span class="op">+</span>
+<span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span>
+<span class="st">  </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>trial_code, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>, <span class="dt">ncol =</span> <span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span>
+<span class="st"> </span>
+<span class="st">  </span><span class="kw">scale_fill_tableau</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Planting month&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;SBR Severity (%)&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Harvest season&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-11-1.png" width="768" /></p>
+<p>Let’s have a look at the variation in soybean rust severity in the nontreated check across the locations.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;treatment2&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;trial_number&quot;</span>, <span class="st">&quot;treatment&quot;</span>), <span class="dt">remove =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(trial_code, sev, <span class="dt">fill =</span> <span class="kw">factor</span>(harvest_season))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span>
+<span class="st">   </span><span class="kw">facet_wrap</span>(<span class="op">~</span>trial_code, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>, <span class="dt">ncol =</span> <span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_tableau</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_tableau</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Planting month&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;SBR Severity (%)&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Harvest season&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-12-1.png" width="768" /></p>
+<p>We repeat the procedure for producing the yield plots.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;treatment2&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;trial_number&quot;</span>, <span class="st">&quot;treatment&quot;</span>), <span class="dt">remove =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="kw">reorder</span>(planting_month, planting_order), yld, 
+             <span class="dt">fill =</span> <span class="kw">factor</span>(harvest_season))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>trial_code, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>, <span class="dt">ncol =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_tableau</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Planting month&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Baseline yield (kg/ha)&quot;</span>, <span class="dt">color =</span> <span class="st">&quot;Harvest season&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Yield by location.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">unite</span>(<span class="st">&quot;treatment2&quot;</span>, <span class="kw">c</span>(<span class="st">&quot;trial_number&quot;</span>, <span class="st">&quot;treatment&quot;</span>), <span class="dt">remove =</span> F) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(trial_code, yld, <span class="dt">fill =</span> <span class="kw">factor</span>(harvest_season))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>()<span class="op">+</span>
+<span class="st">  </span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>trial_code, <span class="dt">scales =</span> <span class="st">&quot;free_x&quot;</span>, <span class="dt">ncol =</span> <span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;right&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_tableau</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Location&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Baseline yield (kg/ha)&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Harvest season&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-14-1.png" width="768" /></p>
+</div>
+<div id="treatments" class="section level3">
+<h3>Treatments</h3>
+<p>Let’s recode the names of the treatments and assign them to three criteria: calendar or growth stage, rainfall and leaf wetness x temperature models. This category will be used to enhance visualization.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws<span class="op">$</span>treatment &lt;-<span class="st"> </span><span class="kw">factor</span>(dataws<span class="op">$</span>treatment,
+  <span class="dt">levels =</span> <span class="kw">c</span>(
+    <span class="st">&quot;UNT&quot;</span>,
+    <span class="st">&quot;CAL&quot;</span>,
+    <span class="st">&quot;DSV50&quot;</span>,
+    <span class="st">&quot;DSV80&quot;</span>,
+    <span class="st">&quot;DVIP6&quot;</span>,
+    <span class="st">&quot;DVIP9&quot;</span>
+  )
+)
+
+
+dataws<span class="op">$</span>treatment_type &lt;-<span class="st"> </span><span class="kw">factor</span>(dataws<span class="op">$</span>treatment_type,
+  <span class="dt">levels =</span> <span class="kw">c</span>(
+    <span class="st">&quot;None&quot;</span>,
+    <span class="st">&quot;Growth stage&quot;</span>,
+    <span class="st">&quot;Rainfall&quot;</span>,
+    <span class="st">&quot;LWDxT&quot;</span>
+  )
+)</code></pre></div>
+</div>
+<div id="overall-severity" class="section level3">
+<h3>Overall severity</h3>
+<p>Here we will produce a boxplot to depict the variation in severity for each of the treatments. It will provide an overview of the performance of the systems, irrespectively of the number of sprays.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(sev <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, sev, <span class="dt">fill =</span> treatment_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>, <span class="dt">outlier.colour =</span> <span class="ot">NA</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis_d</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;SBR Severity&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;System&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+</div>
+<div id="overall-yield" class="section level3">
+<h3>Overall yield</h3>
+<p>We do the same for yield to compare the treatments with regards yied response.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(yld <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, yld, <span class="dt">fill =</span> treatment_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">alpha =</span> <span class="fl">0.7</span>, <span class="dt">outlier.colour =</span> <span class="ot">NA</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">shape =</span> <span class="dv">1</span>, <span class="dt">color =</span> <span class="st">&quot;grey30&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_fill_viridis_d</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Soybean yield (kg/ha)&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;System&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+</div>
+<div id="number-of-sprays" class="section level3">
+<h3>Number of sprays</h3>
+<p>Let’s visualize the frequency of the number of sprays per treatment across the trials, first using histograms.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, treatment_type, treatment, sev_class) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_spray2 =</span> <span class="kw">mean</span>(n_spray)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(n_spray2, <span class="dt">fill =</span> treatment_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>treatment, <span class="dt">ncol =</span> <span class="dv">5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Treatment&quot;</span>, <span class="dt">x =</span> <span class="st">&quot;Number of sprays&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;System&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-18-1.png" width="768" /></p>
+<p>Another way is to use a jitter plot .</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, treatment_type, treatment, sev_class) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_spray2 =</span> <span class="kw">mean</span>(n_spray)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, n_spray2, <span class="dt">color =</span> treatment_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">height =</span> <span class="fl">0.1</span>, <span class="dt">size =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>Now let’s calculate the mean and standard deviation of the number of sprays.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_sprays &lt;-<span class="st"> </span>dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, treatment_type, treatment, sev_class) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">n_spray2 =</span> <span class="kw">mean</span>(n_spray)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(treatment, treatment_type) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(
+    <span class="dt">mean_spray2 =</span> <span class="kw">mean</span>(n_spray2),
+    <span class="dt">sd_spray2 =</span> <span class="kw">sd</span>(n_spray2),
+    <span class="dt">min_spray2 =</span> <span class="kw">min</span>(n_spray2),
+    <span class="dt">max_spray2 =</span> <span class="kw">max</span>(n_spray2)
+  )
+
+mean_sprays <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, mean_spray2, <span class="dt">color =</span> treatment_type)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymin =</span> mean_spray2 <span class="op">-</span><span class="st"> </span>sd_spray2, <span class="dt">ymax =</span> mean_spray2 <span class="op">+</span><span class="st"> </span>sd_spray2), <span class="dt">width =</span> <span class="fl">0.1</span>, <span class="dt">size =</span> <span class="dv">1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;System&quot;</span>,
+       <span class="dt">y =</span> <span class="st">&quot;Mean number of sprays&quot;</span>,
+       <span class="dt">color =</span> <span class="st">&quot;System type&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-20-1.png" width="768" /></p>
+</div>
+</div>
+<div id="fungicide-efficiency" class="section level2">
+<h2>Fungicide efficiency</h2>
+<p>The fungicide efficiency is an index which takes into account the effect of the fungicide (usually reduction in disease compared to the nontreated check), as well as the number of sprays. In other words, if more sprays are needed for fungicide treatement A to reduce disease to the same level as fungicide treatment B, the less efficient is the fungicide treatment A.</p>
+<p>Before we proceed with further analysis, let’s create columns with each of the values of severity and audpc in the check treatment of the trials, which will be needed for our analysis of efficiency for each of these two variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
+
+sev_check &lt;-<span class="st"> </span>dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(trial_number, treatment, sev) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_sev_check =</span> <span class="kw">mean</span>(sev))
+
+datws2 &lt;-<span class="st"> </span><span class="kw">left_join</span>(dataws, sev_check)
+
+
+audpc_check &lt;-<span class="st"> </span>dataws <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(trial_number, treatment, audpc) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_audpc_check =</span> <span class="kw">mean</span>(audpc))
+
+datws4 &lt;-<span class="st"> </span><span class="kw">left_join</span>(dataws, audpc_check)</code></pre></div>
+<p>We do the same for yield as well.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">yld_check &lt;-<span class="st"> </span>datws2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">==</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw">select</span>(trial_number, treatment, yld) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_yld_check =</span> <span class="kw">mean</span>(yld))
+datws3 &lt;-<span class="st"> </span><span class="kw">left_join</span>(datws2, yld_check)</code></pre></div>
+<div id="severity" class="section level3">
+<h3>Severity</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datws2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(n_spray <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment_eff =</span> ((sev <span class="op">/</span><span class="st"> </span>mean_sev_check) <span class="op">/</span><span class="st"> </span>n_spray) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, treatment) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_treatment_eff =</span> <span class="kw">mean</span>(treatment_eff, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, mean_treatment_eff)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.color =</span> <span class="ot">NA</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.1</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+</div>
+<div id="audpc" class="section level3">
+<h3>AUDPC</h3>
+<p>Now we plot the same using the AUDPC values instead of final severity.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">datws4 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(n_spray <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">treatment_eff2 =</span> ((audpc <span class="op">/</span><span class="st"> </span>mean_audpc_check) <span class="op">/</span><span class="st"> </span>n_spray) <span class="op">*</span><span class="st"> </span><span class="dv">100</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, treatment) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(<span class="dt">mean_treatment_eff2 =</span> <span class="kw">mean</span>(treatment_eff2, <span class="dt">na.rm =</span> T)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, mean_treatment_eff2)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="dt">outlier.colour =</span> <span class="ot">NA</span>) <span class="op">+</span>
+<span class="st">    </span><span class="kw">geom_jitter</span>(<span class="dt">width =</span> <span class="fl">0.05</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+</div>
+</div>
+<div id="treatment-comparison" class="section level2">
+<h2>Treatment comparison</h2>
+<p>Here the idea is to estimate the mean response for each treatment using a mixed modelling approach. The approach is similar to meta-analysis where all trials are treated as a random effects in the model. We will use the <em>lme4</em> package for fitting the mixed model.</p>
+<div id="severity-1" class="section level3">
+<h3>Severity</h3>
+<p>Let’s first fit the model for severity.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(lme4)
+control_sev &lt;-<span class="st"> </span>datws2 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">effect_sev =</span> <span class="kw">log</span>(sev <span class="op">/</span><span class="st"> </span>mean_sev_check))
+fit1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(effect_sev <span class="op">~</span><span class="st"> </span>treatment <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>trial_number), <span class="dt">data =</span> control_sev)
+<span class="kw">summary</span>(fit1)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: effect_sev ~ treatment + (1 | trial_number)
+##    Data: control_sev
+## 
+## REML criterion at convergence: 875.7
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.2613 -0.5452  0.0714  0.5979  4.1546 
+## 
+## Random effects:
+##  Groups       Name        Variance Std.Dev.
+##  trial_number (Intercept) 0.2089   0.4571  
+##  Residual                 0.3708   0.6089  
+## Number of obs: 440, groups:  trial_number, 20
+## 
+## Fixed effects:
+##                 Estimate Std. Error t value
+## (Intercept)    -0.005219   0.122804  -0.043
+## treatmentCAL   -1.325760   0.096279 -13.770
+## treatmentDSV50 -1.114497   0.096279 -11.576
+## treatmentDSV80 -0.655189   0.096279  -6.805
+## treatmentDVIP6 -1.557173   0.105689 -14.734
+## treatmentDVIP9 -1.297858   0.105651 -12.284
+## 
+## Correlation of Fixed Effects:
+##             (Intr) trtCAL tDSV50 tDSV80 tDVIP6
+## treatmntCAL -0.392                            
+## trtmntDSV50 -0.392  0.500                     
+## trtmntDSV80 -0.392  0.500  0.500              
+## trtmntDVIP6 -0.357  0.455  0.455  0.455       
+## trtmntDVIP9 -0.357  0.456  0.456  0.456  0.446</code></pre>
+<p>Obtain the significance of the effect of treatments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(car)
+<span class="kw">Anova</span>(fit1)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Chisq"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"321.3345","2":"5","3":"2.584676e-67","_rn_":"treatment"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Now we calculate the means and compare them statistically using the <em>emmeans</em> package. We then back-transform the estimate to obtain the percent control. Recall that the difference in the logs (the estimate is the difference to the first treatment which is the check) is the ratio.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(emmeans)
+m1 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(fit1, <span class="op">~</span>treatment)
+m1 &lt;-<span class="st"> </span><span class="kw">CLD</span>(m1)
+m1<span class="op">$</span>emmean2 &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(m1<span class="op">$</span>emmean))<span class="op">*</span><span class="dv">100</span>
+m1<span class="op">$</span>lower.CL2 &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(m1<span class="op">$</span>lower.CL))<span class="op">*</span><span class="dv">100</span>
+m1<span class="op">$</span>upper.CL2 &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(m1<span class="op">$</span>upper.CL))<span class="op">*</span><span class="dv">100</span></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(treatment, emmean2, lower.CL2, upper.CL2) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">filter</span>(emmean2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, emmean2))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymax =</span> upper.CL2, <span class="dt">ymin =</span> lower.CL2), <span class="dt">width =</span><span class="fl">0.1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;Severity reduction (%)&quot;</span>, 
+       <span class="dt">x =</span> <span class="st">&quot;Treatment&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+</div>
+<div id="audpc-1" class="section level3">
+<h3>AUDPC</h3>
+<p>We fit the same model now for the trials where AUDPC was obtained.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control_audpc &lt;-<span class="st"> </span>datws4 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">effect_audpc =</span> <span class="kw">log</span>(audpc <span class="op">/</span><span class="st"> </span>mean_audpc_check))
+fit2 &lt;-<span class="st"> </span><span class="kw">lmer</span>(effect_audpc <span class="op">~</span><span class="st"> </span>treatment <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>trial_number), <span class="dt">data =</span> control_audpc)
+<span class="kw">summary</span>(fit2)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: effect_audpc ~ treatment + (1 | trial_number)
+##    Data: control_audpc
+## 
+## REML criterion at convergence: 755.3
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -3.6846 -0.5824  0.0796  0.6446  3.3268 
+## 
+## Random effects:
+##  Groups       Name        Variance Std.Dev.
+##  trial_number (Intercept) 0.3239   0.5691  
+##  Residual                 0.3571   0.5976  
+## Number of obs: 384, groups:  trial_number, 16
+## 
+## Fixed effects:
+##                 Estimate Std. Error t value
+## (Intercept)    -0.008263   0.160698  -0.051
+## treatmentCAL   -1.346756   0.105643 -12.748
+## treatmentDSV50 -1.150754   0.105643 -10.893
+## treatmentDSV80 -0.608543   0.105643  -5.760
+## treatmentDVIP6 -1.745819   0.105676 -16.521
+## treatmentDVIP9 -1.407676   0.105643 -13.325
+## 
+## Correlation of Fixed Effects:
+##             (Intr) trtCAL tDSV50 tDSV80 tDVIP6
+## treatmntCAL -0.329                            
+## trtmntDSV50 -0.329  0.500                     
+## trtmntDSV80 -0.329  0.500  0.500              
+## trtmntDVIP6 -0.329  0.500  0.500  0.500       
+## trtmntDVIP9 -0.329  0.500  0.500  0.500  0.500</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">AIC</span>(fit2)</code></pre></div>
+<pre><code>## [1] 771.3408</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Anova</span>(fit2)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Chisq"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"359.6301","2":"5","3":"1.477553e-75","_rn_":"treatment"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Means comparison</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(fit2, <span class="op">~</span>treatment)
+m2 &lt;-<span class="st"> </span><span class="kw">cld</span>(m2)
+m2 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(m2)
+m2</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["emmean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["lower.CL"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["upper.CL"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".group"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"DVIP6","2":"-1.754082354","3":"0.1607201","4":"22.27838","5":"-2.0871541","6":"-1.4210106","7":"1","_rn_":"5"},{"1":"DVIP9","2":"-1.415939110","3":"0.1606981","4":"22.26716","5":"-1.7489750","6":"-1.0829032","7":"2","_rn_":"6"},{"1":"CAL","2":"-1.355018869","3":"0.1606981","4":"22.26716","5":"-1.6880547","6":"-1.0219830","7":"2","_rn_":"2"},{"1":"DSV50","2":"-1.159016869","3":"0.1606981","4":"22.26716","5":"-1.4920527","6":"-0.8259810","7":"2","_rn_":"3"},{"1":"DSV80","2":"-0.616806518","3":"0.1606981","4":"22.26716","5":"-0.9498424","6":"-0.2837706","7":"3","_rn_":"4"},{"1":"UNT","2":"-0.008263043","3":"0.1606981","4":"22.26716","5":"-0.3412989","6":"0.3247728","7":"4","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Transform to percent control:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2<span class="op">$</span>emmean2 &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(m2<span class="op">$</span>emmean))<span class="op">*</span><span class="dv">100</span>
+m2<span class="op">$</span>lower.CL2 &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(m2<span class="op">$</span>lower.CL))<span class="op">*</span><span class="dv">100</span>
+m2<span class="op">$</span>upper.CL2 &lt;-<span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">exp</span>(m2<span class="op">$</span>upper.CL))<span class="op">*</span><span class="dv">100</span>
+m2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(treatment, emmean2, lower.CL2, upper.CL2)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["emmean2"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lower.CL2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["upper.CL2"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"DVIP6","2":"82.6934017","3":"87.59604","4":"75.85301","_rn_":"5"},{"1":"DVIP9","2":"75.7302413","3":"82.60478","4":"66.13890","_rn_":"6"},{"1":"CAL","2":"74.2057573","3":"81.51212","4":"64.01194","_rn_":"2"},{"1":"DSV50","2":"68.6205470","3":"77.50895","4":"56.21947","_rn_":"3"},{"1":"DSV80","2":"46.0334901","3":"61.31980","4":"24.70607","_rn_":"4"},{"1":"UNT","2":"0.8228998","3":"28.91536","4":"-38.37163","_rn_":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Produce the plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m2 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">select</span>(treatment, emmean2, lower.CL2, upper.CL2) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(emmean2 <span class="op">&gt;</span><span class="st"> </span><span class="dv">30</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, emmean2))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymax =</span> upper.CL2, <span class="dt">ymin =</span> lower.CL2), <span class="dt">width =</span><span class="fl">0.1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">y =</span> <span class="st">&quot;AUDPC reduction (%)&quot;</span>, 
+       <span class="dt">x =</span> <span class="st">&quot;Treatment&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>,<span class="dv">100</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+</div>
+<div id="yield-response" class="section level3">
+<h3>Yield response</h3>
+<p>Differently from the disease variables, we will focus on an absolute metric, which is the yield difference between the system and the untreated check.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">control_yld &lt;-<span class="st"> </span>datws3 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">effect_yld =</span> yld <span class="op">-</span><span class="st"> </span>mean_yld_check)
+fit3 &lt;-<span class="st"> </span><span class="kw">lmer</span>(effect_yld <span class="op">~</span><span class="st"> </span>treatment <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>trial_number), <span class="dt">data =</span> control_yld)
+<span class="kw">summary</span>(fit3)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: effect_yld ~ treatment + (1 | trial_number)
+##    Data: control_yld
+## 
+## REML criterion at convergence: 9554
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -4.0233 -0.6590 -0.0404  0.6483  3.3274 
+## 
+## Random effects:
+##  Groups       Name        Variance Std.Dev.
+##  trial_number (Intercept) 202638   450.2   
+##  Residual                 315565   561.8   
+## Number of obs: 616, groups:  trial_number, 27
+## 
+## Fixed effects:
+##                  Estimate Std. Error t value
+## (Intercept)    -1.770e-11  1.021e+02   0.000
+## treatmentCAL    1.057e+03  7.644e+01  13.831
+## treatmentDSV50  9.753e+02  7.644e+01  12.758
+## treatmentDSV80  5.374e+02  7.644e+01   7.031
+## treatmentDVIP6  1.261e+03  8.044e+01  15.681
+## treatmentDVIP9  1.129e+03  8.042e+01  14.035
+## 
+## Correlation of Fixed Effects:
+##             (Intr) trtCAL tDSV50 tDSV80 tDVIP6
+## treatmntCAL -0.374                            
+## trtmntDSV50 -0.374  0.500                     
+## trtmntDSV80 -0.374  0.500  0.500              
+## trtmntDVIP6 -0.356  0.475  0.475  0.475       
+## trtmntDVIP9 -0.356  0.475  0.475  0.475  0.470</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Anova</span>(fit2)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Chisq"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"359.6301","2":"5","3":"1.477553e-75","_rn_":"treatment"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Compare means:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m3 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(fit3, <span class="op">~</span>treatment)
+m3 &lt;-<span class="st"> </span><span class="kw">CLD</span>(m3)
+m3<span class="op">$</span>emmean2 &lt;-<span class="st"> </span><span class="kw">round</span>(m3<span class="op">$</span>emmean, <span class="dv">2</span>)
+m3</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["emmean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["lower.CL"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["upper.CL"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".group"],"name":[7],"type":["chr"],"align":["left"]},{"label":["emmean2"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"UNT","2":"-1.769705e-11","3":"102.1127","4":"43.68480","5":"-205.8366","6":"205.8366","7":"1","8":"0.00","_rn_":"1"},{"1":"DSV80","2":"5.374463e+02","3":"102.1127","4":"43.68480","5":"331.6097","6":"743.2829","7":"2","8":"537.45","_rn_":"4"},{"1":"DSV50","2":"9.752982e+02","3":"102.1127","4":"43.68480","5":"769.4616","6":"1181.1348","7":"3","8":"975.30","_rn_":"3"},{"1":"CAL","2":"1.057306e+03","3":"102.1127","4":"43.68480","5":"851.4691","6":"1263.1423","7":"34","8":"1057.31","_rn_":"2"},{"1":"DVIP9","2":"1.128764e+03","3":"105.1316","4":"48.82461","5":"917.4749","6":"1340.0530","7":"34","8":"1128.76","_rn_":"6"},{"1":"DVIP6","2":"1.261373e+03","3":"105.1456","4":"48.84759","5":"1050.0586","6":"1472.6881","7":"4","8":"1261.37","_rn_":"5"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Let’s produce a table with the estimate of yield response and the mean number of sprays.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_yld_gain &lt;-<span class="st"> </span><span class="kw">tibble</span>(m3<span class="op">$</span>treatment, m3<span class="op">$</span>emmean2, m3<span class="op">$</span>lower.CL, m3<span class="op">$</span>upper.CL)
+<span class="kw">colnames</span>(mean_yld_gain) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;treatment&quot;</span>, <span class="st">&quot;meanD&quot;</span>, <span class="st">&quot;lcl&quot;</span>, <span class="st">&quot;ucl&quot;</span>)
+
+mean_applications &lt;-<span class="st"> </span><span class="kw">tibble</span>(mean_sprays<span class="op">$</span>treatment, mean_sprays<span class="op">$</span>mean_spray2)
+<span class="kw">colnames</span>(mean_applications) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;treatment&quot;</span>, <span class="st">&quot;mean_sprays&quot;</span>)
+
+mean_gain &lt;-<span class="st"> </span><span class="kw">left_join</span>(mean_yld_gain, mean_applications)
+
+mean_gain</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["meanD"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["lcl"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["ucl"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["mean_sprays"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"UNT","2":"0.00","3":"-205.8366","4":"205.8366","5":"NA"},{"1":"DSV80","2":"537.45","3":"331.6097","4":"743.2829","5":"1.896552"},{"1":"DSV50","2":"975.30","3":"769.4616","4":"1181.1348","5":"3.413793"},{"1":"CAL","2":"1057.31","3":"851.4691","4":"1263.1423","5":"4.137931"},{"1":"DVIP9","2":"1128.76","3":"917.4749","4":"1340.0530","5":"4.166667"},{"1":"DVIP6","2":"1261.37","3":"1050.0586","4":"1472.6881","5":"4.700000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Produce the plot:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_gain <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(meanD <span class="op">&gt;</span><span class="st"> </span><span class="dv">400</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, meanD))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>(<span class="dt">size =</span> <span class="dv">3</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="kw">aes</span>(<span class="dt">ymax =</span> ucl, <span class="dt">ymin =</span> lcl), <span class="dt">width =</span> <span class="fl">0.1</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">ylim</span>(<span class="dv">100</span>, <span class="dv">1500</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+</div>
+</div>
+<div id="profitability" class="section level2">
+<h2>Profitability</h2>
+<div id="at-the-trial-level" class="section level3">
+<h3>At the trial level</h3>
+<p>Here we will calculate the profitability of the treatments for each of the trials. The idea is to check whether there was an economic benefit from using the recommended fungicide sprays following the systems. First, we need the mean and standard deviation for each treatment.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof &lt;-<span class="st"> </span>datws3 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(mean_yld_check <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">group_by</span>(trial_number, harvest_season, trial_code, treatment, treatment_type, n_spray, mean_yld_check, planting_order, sev_class, planting_month) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">summarize</span>(
+    <span class="dt">mean_yld =</span> <span class="kw">mean</span>(yld),
+    <span class="dt">sd_yld =</span> <span class="kw">sd</span>(yld)
+  )</code></pre></div>
+<p>Here we set the scenario for the economic analysis. For nows, let’s assume fixed values for all trials:</p>
+<ul>
+<li>fungicide price: 25 dol</li>
+<li>soybean price: 300 dol</li>
+<li>operational cost: 10</li>
+<li>profit: 0 (zero is break even point)</li>
+<li>number of blocks/reps: 4</li>
+</ul>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof<span class="op">$</span>fungicide_price &lt;-<span class="st"> </span><span class="dv">25</span>
+prof<span class="op">$</span>soybean_price &lt;-<span class="st"> </span><span class="dv">300</span>
+prof<span class="op">$</span>operational_cost &lt;-<span class="st"> </span><span class="dv">10</span>
+prof<span class="op">$</span>profit &lt;-<span class="st"> </span><span class="dv">0</span> <span class="co"># zero is break even point</span>
+prof<span class="op">$</span>number_blocks &lt;-<span class="st"> </span><span class="dv">4</span></code></pre></div>
+<p>Create the variables: D = yield difference C = fungicide + application costs P = soybean price delta = yield gain above break even point ploss = risk of not offsetting the costs</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 &lt;-<span class="st"> </span>prof <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">D =</span> mean_yld <span class="op">-</span><span class="st"> </span>mean_yld_check, <span class="co"># yield difference </span>
+    <span class="dt">C =</span> n_spray <span class="op">*</span><span class="st"> </span>(fungicide_price <span class="op">+</span><span class="st"> </span>operational_cost), <span class="co"># fungicide and application costs</span>
+    <span class="dt">P =</span> soybean_price <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>, <span class="co"># crop price</span>
+    <span class="dt">delta =</span> D <span class="op">-</span><span class="st"> </span>((C <span class="op">/</span><span class="st"> </span>P) <span class="op">+</span><span class="st"> </span>(profit <span class="op">/</span><span class="st"> </span>P)), 
+    <span class="dt">profit2 =</span> delta <span class="op">/</span><span class="st"> </span>sd_yld <span class="op">*</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="fl">0.5</span>),
+    <span class="dt">ploss =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span>(<span class="kw">pt</span>(profit2, (number_blocks <span class="op">+</span><span class="st"> </span>number_blocks <span class="op">-</span><span class="st"> </span><span class="dv">2</span>)))
+  ) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(<span class="dt">decision =</span> <span class="kw">case_when</span>(  <span class="co"># identify trials with low risk of not recovering the cost</span>
+    ploss <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">~</span><span class="st"> &quot;0&quot;</span>,
+    ploss <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">~</span><span class="st"> &quot;1&quot;</span>
+  ))</code></pre></div>
+<p>Let’s plot the yield responses irrespectively of the costs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> D, <span class="dt">fill =</span> delta))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span>)<span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span>  <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Yield response from using fungicides&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>Let’s plot the yield responses above the break-even point.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> delta, <span class="dt">fill =</span> delta))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span>)<span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span>  <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Yield response from using fungicides&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>And now the distribution of treatments with the respective risk of not offsetting the costs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> ploss, <span class="dt">fill =</span> ploss))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> ..x..), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span> ) <span class="op">+</span><span class="st"> </span>
+<span class="st">         </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;green&#39;</span>,  <span class="dt">high=</span><span class="st">&#39;darkred&#39;</span>)<span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span>  <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Risk of not offsetting cost&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>We do the same now conditioned to the treatments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> ploss, <span class="dt">fill =</span> ploss))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> ..x..), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span> ) <span class="op">+</span><span class="st"> </span>
+<span class="st">       </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;green&#39;</span>,  <span class="dt">high=</span><span class="st">&#39;darkred&#39;</span>)<span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span>  <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Risk of not offsetting cost&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>treatment, <span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+<p>Let’s visualize another way, using boxplots.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, ploss, <span class="dt">group =</span> treatment)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_boxplot</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> decision), <span class="dt">width =</span> <span class="fl">0.05</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="fl">0.5</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+</div>
+<div id="overall-mean-risk" class="section level3">
+<h3>Overall mean risk</h3>
+<p>Now we will summarize the means of risk using the same mixed model we used before to estimate mean control and response.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(ploss <span class="op">~</span><span class="st"> </span>treatment <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>trial_number), <span class="dt">data =</span> prof1)
+<span class="kw">summary</span>(fit1)</code></pre></div>
+<pre><code>## Linear mixed model fit by REML [&#39;lmerMod&#39;]
+## Formula: ploss ~ treatment + (1 | trial_number)
+##    Data: prof1
+## 
+## REML criterion at convergence: 20.1
+## 
+## Scaled residuals: 
+##     Min      1Q  Median      3Q     Max 
+## -1.5232 -0.5763 -0.1164  0.4325  3.3154 
+## 
+## Random effects:
+##  Groups       Name        Variance Std.Dev.
+##  trial_number (Intercept) 0.03287  0.1813  
+##  Residual                 0.04395  0.2096  
+## Number of obs: 127, groups:  trial_number, 27
+## 
+## Fixed effects:
+##                Estimate Std. Error t value
+## (Intercept)     0.26432    0.05334   4.956
+## treatmentDSV50 -0.01938    0.05706  -0.340
+## treatmentDSV80  0.08362    0.05706   1.466
+## treatmentDVIP6 -0.03520    0.06003  -0.586
+## treatmentDVIP9 -0.01319    0.06003  -0.220
+## 
+## Correlation of Fixed Effects:
+##             (Intr) tDSV50 tDSV80 tDVIP6
+## trtmntDSV50 -0.535                     
+## trtmntDSV80 -0.535  0.500              
+## trtmntDVIP6 -0.508  0.475  0.475       
+## trtmntDVIP9 -0.508  0.475  0.475  0.470</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">Anova</span>(fit1)</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Chisq"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Df"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Pr(>Chisq)"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"5.139429","2":"4","3":"0.2732881","_rn_":"treatment"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>As we can see, no difference was found among the treatments.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 &lt;-<span class="st"> </span><span class="kw">emmeans</span>(fit1, <span class="op">~</span>treatment)
+m1 &lt;-<span class="st"> </span><span class="kw">cld</span>(m1)
+m1 &lt;-<span class="st"> </span><span class="kw">data.frame</span>(m1)
+m1</code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["treatment"],"name":[1],"type":["fctr"],"align":["left"]},{"label":["emmean"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["SE"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["df"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["lower.CL"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["upper.CL"],"name":[6],"type":["dbl"],"align":["right"]},{"label":[".group"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"DVIP6","2":"0.2291254","3":"0.05654957","4":"81.78768","5":"0.1166260","6":"0.3416249","7":"1","_rn_":"4"},{"1":"DSV50","2":"0.2449450","3":"0.05333839","4":"72.35028","5":"0.1386257","6":"0.3512644","7":"1","_rn_":"2"},{"1":"DVIP9","2":"0.2511303","3":"0.05654957","4":"81.78768","5":"0.1386308","6":"0.3636298","7":"1","_rn_":"5"},{"1":"CAL","2":"0.2643246","3":"0.05333839","4":"72.35028","5":"0.1580052","6":"0.3706439","7":"1","_rn_":"1"},{"1":"DSV80","2":"0.3479490","3":"0.05333839","4":"72.35028","5":"0.2416296","6":"0.4542683","7":"1","_rn_":"3"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">m1 <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, emmean)) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">alpha =</span> <span class="fl">0.6</span>, <span class="dt">fill =</span> <span class="st">&quot;gray90&quot;</span>, <span class="kw">aes</span>(treatment, (emmean <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">-</span><span class="st"> </span>emmean)))) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_col</span>(<span class="dt">fill =</span> <span class="st">&quot;orange&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.8</span>) <span class="op">+</span>
+<span class="st">  </span>
+<span class="st">  </span><span class="kw">geom_errorbar</span>(<span class="dt">color =</span> <span class="st">&quot;gray50&quot;</span>, <span class="kw">aes</span>(<span class="dt">ymin =</span> lower.CL, <span class="dt">ymax =</span> upper.CL), <span class="dt">width =</span> <span class="fl">0.1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">theme_minimal</span>() <span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(
+    <span class="dt">x =</span> <span class="st">&quot;&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Mean risk of not-offsetting costs&quot;</span>,
+    <span class="dt">title =</span> <span class="st">&quot;Soybean rust control &quot;</span>,
+    <span class="dt">subtitle =</span> <span class="st">&quot;Warning system value (n = 28 trials) &quot;</span>,
+    <span class="dt">caption =</span> <span class="st">&quot;Cost per spray = US$35 and soybean price per ton = US$300&quot;</span>
+  ) <span class="op">+</span>
+<span class="st"> </span>
+<span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw">ggsave</span>(<span class="st">&quot;figs/probability.png&quot;</span>, <span class="dt">width =</span> <span class="dv">6</span>, <span class="dt">height =</span> <span class="dv">4</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>Let’s see the relationship between the number of sprays and the risk of notofsetting the costs.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_gain <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">D =</span> meanD,
+    <span class="dt">C =</span> mean_sprays <span class="op">*</span><span class="st"> </span><span class="dv">45</span>,
+    <span class="dt">P =</span> <span class="dv">300</span>,
+    <span class="dt">profit =</span> (D <span class="op">-</span><span class="st"> </span>(C <span class="op">/</span><span class="st"> </span>(P <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>))) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">360000</span>),
+    <span class="dt">ploss =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(profit)
+  ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(mean_sprays, ploss))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st"> </span><span class="kw">xlim</span>(<span class="dv">1</span>,<span class="dv">5</span>)<span class="op">+</span>
+<span class="st"> </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Now, the mean yield difference</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_gain <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">mutate</span>(
+    <span class="dt">D =</span> meanD,
+    <span class="dt">C =</span> mean_sprays <span class="op">*</span><span class="st"> </span><span class="dv">45</span>,
+    <span class="dt">P =</span> <span class="dv">300</span>,
+    <span class="dt">profit =</span> (D <span class="op">-</span><span class="st"> </span>(C <span class="op">/</span><span class="st"> </span>(P <span class="op">/</span><span class="st"> </span><span class="dv">1000</span>))) <span class="op">/</span><span class="st"> </span><span class="kw">sqrt</span>(<span class="dv">360000</span>),
+    <span class="dt">ploss =</span> <span class="dv">1</span> <span class="op">-</span><span class="st"> </span><span class="kw">pnorm</span>(profit)
+  ) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">    </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(mean_sprays, D))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
+<span class="st"> </span><span class="kw">xlim</span>(<span class="dv">1</span>,<span class="dv">5</span>)<span class="op">+</span>
+<span class="st"> </span><span class="kw">ylim</span>(<span class="dv">200</span>, <span class="dv">1500</span>)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+</div>
+</div>
+
+
+
+Copyright 2019 Emerson Del Ponte
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
