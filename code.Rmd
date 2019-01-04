@@ -627,6 +627,7 @@ prof1 <- prof %>%
   ))
 ```
 
+#### Yield response
 
 Let's plot the yield responses irrespectively of the costs.
 
@@ -641,7 +642,7 @@ prof1 %>%
 
 ```
 
-
+#### Yield above break-even
 
 Let's plot the yield responses above the break-even point.
 
@@ -655,6 +656,8 @@ prof1 %>%
 
 
 ```
+
+#### Risk of not-offsetting costs
 
 And now the distribution of treatments with the respective risk of not offsetting the costs.
 
@@ -670,6 +673,9 @@ prof1 %>%
 
 ```
 
+
+##### By treatment
+
 We do the same now conditioned to the treatments.
 
 
@@ -683,6 +689,57 @@ prof1 %>%
        fill = "Risk")+
   facet_wrap(~treatment, ncol = 2)
 ```
+
+##### By planting date
+
+Here we want to check if there is any effect of planting date on the risk of not-offsetting the cost.
+
+```{r fig.height=5, fig.width=10}
+prof1 %>% 
+  ggplot(aes(x= ploss, fill = ploss))+
+  geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
+       scale_fill_gradient(low='green',  high='darkred')+
+     geom_vline(xintercept =  0.5, linetype = 2)+
+  labs(x = "Risk of not offsetting cost",
+       fill = "Risk", 
+       title = "All locations")+
+  facet_grid(treatment ~ planting_order)
+```
+
+##### Piracicaba
+
+Now we plot only the locations where five plantings were tested. First, Piracicaba.
+
+```{r fig.height=5, fig.width=10}
+prof1 %>% 
+  filter(trial_code == "PIR") %>% 
+  ggplot(aes(x= ploss, fill = ploss))+
+  geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
+       scale_fill_gradient(low='green',  high='darkred')+
+     geom_vline(xintercept =  0.5, linetype = 2)+
+  labs(x = "Risk of not offsetting cost",
+       fill = "Risk", 
+       title = "Piracicaba")+
+  facet_grid(treatment ~ planting_order)
+```
+
+##### Ponta Grossa
+
+
+```{r fig.height=5, fig.width=10}
+prof1 %>% 
+  filter(trial_code == "PG") %>% 
+  ggplot(aes(x= ploss, fill = ploss))+
+  geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
+       scale_fill_gradient(low='green',  high='darkred')+
+     geom_vline(xintercept =  0.5, linetype = 2)+
+  labs(x = "Risk of not offsetting cost",
+       fill = "Risk", 
+       title = "Ponta Grossa")+
+  facet_grid(treatment ~ planting_order)
+```
+
+##### Using boxplot
 
 Let's visualize another way, using boxplots.
 
@@ -698,7 +755,7 @@ prof1 %>%
 
 
 
-### Overall mean risk
+### Overall risk of not-offsetting costs
 
 Now we will summarize the means of risk using the same mixed model we used before to estimate mean control and response. 
 
@@ -706,6 +763,8 @@ Now we will summarize the means of risk using the same mixed model we used befor
 fit1 <- lmer(ploss ~ treatment + (1 | trial_number), data = prof1)
 summary(fit1)
 ```
+
+
 
 ```{r}
 Anova(fit1)
@@ -741,7 +800,11 @@ m1 %>%
   ggsave("figs/probability.png", width = 6, height = 4)
 ```
 
-Let's see the relationship between the number of sprays and the risk of notofsetting the costs.
+
+#### Number of sprays and risk
+
+
+Let's see the relationship between the number of sprays and the risk of not-ofsetting the costs.
 
 ```{r}
 
@@ -761,6 +824,8 @@ mean_gain %>%
 
 ```
 
+
+#### Number of sprays and yield response
 
 Now, the mean yield difference
 

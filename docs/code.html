@@ -947,6 +947,8 @@ prof<span class="op">$</span>number_blocks &lt;-<span class="st"> </span><span c
     ploss <span class="op">&lt;</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">~</span><span class="st"> &quot;0&quot;</span>,
     ploss <span class="op">&gt;=</span><span class="st"> </span><span class="fl">0.5</span> <span class="op">~</span><span class="st"> &quot;1&quot;</span>
   ))</code></pre></div>
+<div id="yield-response-1" class="section level4">
+<h4>Yield response</h4>
 <p>Let’s plot the yield responses irrespectively of the costs.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> D, <span class="dt">fill =</span> delta))<span class="op">+</span>
@@ -955,6 +957,9 @@ prof<span class="op">$</span>number_blocks &lt;-<span class="st"> </span><span c
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Yield response from using fungicides&quot;</span>,
        <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)</code></pre></div>
 <p><img src="code_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+</div>
+<div id="yield-above-break-even" class="section level4">
+<h4>Yield above break-even</h4>
 <p>Let’s plot the yield responses above the break-even point.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> delta, <span class="dt">fill =</span> delta))<span class="op">+</span>
@@ -963,6 +968,9 @@ prof<span class="op">$</span>number_blocks &lt;-<span class="st"> </span><span c
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Yield response from using fungicides&quot;</span>,
        <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)</code></pre></div>
 <p><img src="code_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+</div>
+<div id="risk-of-not-offsetting-costs" class="section level4">
+<h4>Risk of not-offsetting costs</h4>
 <p>And now the distribution of treatments with the respective risk of not offsetting the costs.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> ploss, <span class="dt">fill =</span> ploss))<span class="op">+</span>
@@ -972,6 +980,8 @@ prof<span class="op">$</span>number_blocks &lt;-<span class="st"> </span><span c
 <span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Risk of not offsetting cost&quot;</span>,
        <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)</code></pre></div>
 <p><img src="code_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<div id="by-treatment" class="section level5">
+<h5>By treatment</h5>
 <p>We do the same now conditioned to the treatments.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> ploss, <span class="dt">fill =</span> ploss))<span class="op">+</span>
@@ -982,6 +992,52 @@ prof<span class="op">$</span>number_blocks &lt;-<span class="st"> </span><span c
        <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>)<span class="op">+</span>
 <span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>treatment, <span class="dt">ncol =</span> <span class="dv">2</span>)</code></pre></div>
 <p><img src="code_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
+</div>
+<div id="by-planting-date" class="section level5">
+<h5>By planting date</h5>
+<p>Here we want to check if there is any effect of planting date on the risk of not-offsetting the cost.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> ploss, <span class="dt">fill =</span> ploss))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> ..x..), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span> ) <span class="op">+</span><span class="st"> </span>
+<span class="st">       </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;green&#39;</span>,  <span class="dt">high=</span><span class="st">&#39;darkred&#39;</span>)<span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span>  <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Risk of not offsetting cost&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>, 
+       <span class="dt">title =</span> <span class="st">&quot;All locations&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(treatment <span class="op">~</span><span class="st"> </span>planting_order)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-45-1.png" width="960" /></p>
+</div>
+<div id="piracicaba" class="section level5">
+<h5>Piracicaba</h5>
+<p>Now we plot only the locations where five plantings were tested. First, Piracicaba.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(trial_code <span class="op">==</span><span class="st"> &quot;PIR&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> ploss, <span class="dt">fill =</span> ploss))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> ..x..), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span> ) <span class="op">+</span><span class="st"> </span>
+<span class="st">       </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;green&#39;</span>,  <span class="dt">high=</span><span class="st">&#39;darkred&#39;</span>)<span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span>  <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Risk of not offsetting cost&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>, 
+       <span class="dt">title =</span> <span class="st">&quot;Piracicaba&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(treatment <span class="op">~</span><span class="st"> </span>planting_order)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-46-1.png" width="960" /></p>
+</div>
+<div id="ponta-grossa" class="section level5">
+<h5>Ponta Grossa</h5>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">filter</span>(trial_code <span class="op">==</span><span class="st"> &quot;PG&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x=</span> ploss, <span class="dt">fill =</span> ploss))<span class="op">+</span>
+<span class="st">  </span><span class="kw">geom_histogram</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> ..x..), <span class="dt">color =</span> <span class="st">&quot;white&quot;</span>, <span class="dt">bins =</span> <span class="dv">20</span> ) <span class="op">+</span><span class="st"> </span>
+<span class="st">       </span><span class="kw">scale_fill_gradient</span>(<span class="dt">low=</span><span class="st">&#39;green&#39;</span>,  <span class="dt">high=</span><span class="st">&#39;darkred&#39;</span>)<span class="op">+</span>
+<span class="st">     </span><span class="kw">geom_vline</span>(<span class="dt">xintercept =</span>  <span class="fl">0.5</span>, <span class="dt">linetype =</span> <span class="dv">2</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Risk of not offsetting cost&quot;</span>,
+       <span class="dt">fill =</span> <span class="st">&quot;Risk&quot;</span>, 
+       <span class="dt">title =</span> <span class="st">&quot;Ponta Grossa&quot;</span>)<span class="op">+</span>
+<span class="st">  </span><span class="kw">facet_grid</span>(treatment <span class="op">~</span><span class="st"> </span>planting_order)</code></pre></div>
+<p><img src="code_files/figure-html/unnamed-chunk-47-1.png" width="960" /></p>
+</div>
+<div id="using-boxplot" class="section level5">
+<h5>Using boxplot</h5>
 <p>Let’s visualize another way, using boxplots.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">prof1 <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(treatment, ploss, <span class="dt">group =</span> treatment)) <span class="op">+</span>
@@ -989,10 +1045,12 @@ prof<span class="op">$</span>number_blocks &lt;-<span class="st"> </span><span c
 <span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">color =</span> decision), <span class="dt">width =</span> <span class="fl">0.05</span>, <span class="dt">size =</span> <span class="dv">3</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">geom_hline</span>(<span class="dt">yintercept =</span> <span class="fl">0.5</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">scale_color_viridis_d</span>()</code></pre></div>
-<p><img src="code_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p><img src="code_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
 </div>
-<div id="overall-mean-risk" class="section level3">
-<h3>Overall mean risk</h3>
+</div>
+</div>
+<div id="overall-risk-of-not-offsetting-costs" class="section level3">
+<h3>Overall risk of not-offsetting costs</h3>
 <p>Now we will summarize the means of risk using the same mixed model we used before to estimate mean control and response.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">fit1 &lt;-<span class="st"> </span><span class="kw">lmer</span>(ploss <span class="op">~</span><span class="st"> </span>treatment <span class="op">+</span><span class="st"> </span>(<span class="dv">1</span> <span class="op">|</span><span class="st"> </span>trial_number), <span class="dt">data =</span> prof1)
 <span class="kw">summary</span>(fit1)</code></pre></div>
@@ -1059,8 +1117,10 @@ m1</code></pre></div>
 <span class="st"> </span>
 <span class="st">  </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw">ggsave</span>(<span class="st">&quot;figs/probability.png&quot;</span>, <span class="dt">width =</span> <span class="dv">6</span>, <span class="dt">height =</span> <span class="dv">4</span>)</code></pre></div>
-<p><img src="code_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
-<p>Let’s see the relationship between the number of sprays and the risk of notofsetting the costs.</p>
+<p><img src="code_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<div id="number-of-sprays-and-risk" class="section level4">
+<h4>Number of sprays and risk</h4>
+<p>Let’s see the relationship between the number of sprays and the risk of not-ofsetting the costs.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_gain <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">mutate</span>(
@@ -1074,7 +1134,10 @@ m1</code></pre></div>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st"> </span><span class="kw">xlim</span>(<span class="dv">1</span>,<span class="dv">5</span>)<span class="op">+</span>
 <span class="st"> </span><span class="kw">ylim</span>(<span class="dv">0</span>, <span class="dv">1</span>)</code></pre></div>
-<p><img src="code_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p><img src="code_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+</div>
+<div id="number-of-sprays-and-yield-response" class="section level4">
+<h4>Number of sprays and yield response</h4>
 <p>Now, the mean yield difference</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mean_gain <span class="op">%&gt;%</span>
 <span class="st">  </span><span class="kw">filter</span>(treatment <span class="op">!=</span><span class="st"> &quot;UNT&quot;</span>) <span class="op">%&gt;%</span>
@@ -1089,7 +1152,8 @@ m1</code></pre></div>
 <span class="st">  </span><span class="kw">geom_point</span>()<span class="op">+</span>
 <span class="st"> </span><span class="kw">xlim</span>(<span class="dv">1</span>,<span class="dv">5</span>)<span class="op">+</span>
 <span class="st"> </span><span class="kw">ylim</span>(<span class="dv">200</span>, <span class="dv">1500</span>)</code></pre></div>
-<p><img src="code_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+<p><img src="code_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+</div>
 </div>
 </div>
 
