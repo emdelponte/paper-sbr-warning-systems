@@ -1,9 +1,8 @@
 # Research compendium 
 
 
-This repository contains the development version of RMarkdown code and data example files to customize and generate a responsive website for a research compendium - a compilation of data and computer code to reproduce the results of a publication.
+This repository contains all files necessary to reproduce the analysis for the paper.
 
-Website example: https://emdelponte.github.io/research-compendium-website/
 
 # Authors of this repository
 
@@ -16,13 +15,14 @@ The root of the repository contains files that set the website structure (menus,
 - `index.Rmd`: Describe the research, objectives, authorship, etc.
 - `data.Rmd`: Contains the raw or raw-derived data.
 - `code.Rmd`: Produces the main analysis report with a template that follows the Wickham and Grolemund's [model for a data science project](http://r4ds.had.co.nz/introduction.html):  import -> tidy -> transform-visualize-model -> communicate 
-- `manuscript.Rmd`: An example html manuscript template. It is intended to work as a pre-print version of the paper. 
+
 
 There are three basic folders:
 
 - `data/` - raw and further processed data.
 - `docs/` - html files of the research compendia with all text and figures.
 - `supp/` - supplementary files that are not data or R codes.
+- `figs/` - Figure 
 
 
 # Licenses

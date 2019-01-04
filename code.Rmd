@@ -187,7 +187,7 @@ dataws %>%
   theme(legend.position = "right") +
   scale_color_tableau() +
   scale_fill_tableau()+
-  labs(x = "Planting month", y = "SBR Severity (%)", color = "Harvest season")
+  labs(x = "Location", y = "SBR Severity (%)", color = "Harvest season")
 ```
 
 
