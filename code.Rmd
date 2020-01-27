@@ -1,29 +1,34 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: inline
+---
 % Code
 
 ```{r message=FALSE, warning=FALSE}
-
 # Set the default theme for the ggplot2 plots
 library(tidyverse)
-theme_set(theme_light())
+library(cowplot)
+theme_set(theme_minimal_hgrid())
 library(ggthemes)
+library(ggsci)
+
 ```
 
 ```{r global options, include = FALSE}
 knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
 
-
-
-
 ## Read data
 
-The data were organized in a Google sheet file which can be read directly using the *gsheet* package. Let's create the dataset and name it as `dataws`. 
+The data were organized in a Google sheet file which can be read directly using the *gsheet* package. See below the code that can be used to load the data from the cloud. I created a csv file for the data and either could be used. 
 
 ```{r}
-dataws <- gsheet::gsheet2tbl(
-  "https://docs.google.com/spreadsheets/d/1P3wzN-nQiSKBjfN9u_MADAAtTpBeyAObzhwVybD5b3w/edit#gid=931758392"
-)
+#library(gsheet)
+#dataws <- gsheet::gsheet2tbl(  "https://docs.google.com/spreadsheets/d/1P3wzN-nQiSKBjfN9u_MADAAtTpBeyAObzhwVybD5b3w/edit#gid=931758392"
+#write_csv(dataws, "data/dataws.csv")
 
+dataws <- read_csv("data/dataws.csv")
 ```
 
 
@@ -32,7 +37,7 @@ dataws <- gsheet::gsheet2tbl(
 
 ### Experiments and treatments
 
-Let's explore the data on the epidemics and yield in all experiments. We need the *tidyverse* package, which is a collection of several packages, to facilitate our analysis.
+Let's explore the data of the epidemic variables and yield in all experiments. We need the *tidyverse* package (loads a collection of several packages) to facilitate our analysis.
 
 
 Number of experiments:
@@ -41,25 +46,24 @@ Number of experiments:
 max(dataws$trial_number)
 ```
 
-Experiments by treatment and source:
+Number of experiments by treatment and source:
 
 ```{r}
 
 table(dataws$treatment, dataws$source)/4
 ```
 
-Planting dates:
+Number and percent of planting dates per month across all experiments.
 
 ```{r}
 library(janitor)
 dataws %>% 
- distinct(planting_date, planting_order, planting_month) %>% 
   tabyl(planting_month) %>% 
-    arrange(-n)
+    arrange(-n) 
 
 ```
 
-Number of trials where soybean rust severity was obtained.
+Number of trials with soybean rust severity.
 
 ```{r}
 dataws %>% 
@@ -70,7 +74,7 @@ dataws %>%
 ```
 
 
-Number of trials where AUDPC was obtained.
+Number of trials with AUDPC.
 
 ```{r}
 dataws %>% 
@@ -92,33 +96,35 @@ dataws %>%
 
 ### Disease pressure
 
-We will filter the untreated check plots and inspect the variation in the mean and standard deviation of disease severity for each trial, which provides an overview of the "disease pressure".
+We will filter the untreated check plots and inspect the variation in the mean and standard deviation of disease severity for each trial. This provides an overview of the "disease pressure".
 
 
-```{r}
-dataws %>%
+
+```{r fig.height=3, fig.width=7}
+p1_sev_trials <- dataws %>%
   filter(treatment == "UNT") %>%
   filter(sev > 0) %>%
   unite("treatment2", c("trial_number", "trial_code"), remove = F) %>%
   group_by(trial_number, treatment2, harvest_season, trial_code) %>%
   summarize(mean_sev = mean(sev), 
             sd_sev = sd(sev)) %>%
-  ggplot(aes(reorder(treatment2, mean_sev), mean_sev,
-              color = factor(harvest_season),
-             shape = trial_code)) +
-  geom_point(size = 3) +
+  ggplot(aes(reorder(treatment2, harvest_season), mean_sev,
+              shape = factor(harvest_season))) +
+  geom_point(size = 2) +
   geom_errorbar(aes(ymin = mean_sev - sd_sev, 
                     ymax = mean_sev + sd_sev), 
-                width = 0.3) +
-  theme(legend.position = "right", 
-        axis.text.x = element_text(angle = 90, hjust = 1)) +
+                width = 0.1) +
+  theme(legend.position = "none", 
+         axis.text.x=element_blank()) +
    labs(
-    y = "Mean severity check treament (%)",
-    x = "Trial number",
-    shape = "Location"
+    y = "UNT severity (%)",
+    x = "Trial",
+    shape = "Location", color = "Harvest season"
   )+
-  scale_color_tableau()+
-  facet_wrap(~harvest_season, scales = "free_x")
+  ylim(0,106)+
+  facet_wrap(~trial_code, scales = "free_x", ncol=4)
+
+p1_sev_trials
 ```
 
 ### Baseline yield
@@ -126,103 +132,30 @@ dataws %>%
 We do the same for what we call baseline yield, which is the actual yields for the situations where no fungicide was applied (yield in the check treatment).
 
 
-```{r}
-dataws %>%
+```{r fig.height=3, fig.width=7}
+p1_yield_trials <- dataws %>%
   filter(treatment == "UNT") %>%
   filter(yld > 0) %>%
   unite("treatment2", c("trial_number", "trial_code"), remove = F) %>%
   group_by(trial_number, treatment2, harvest_season, trial_code) %>%
   summarize(mean_yld = mean(yld), sd_yld = sd(yld)) %>%
-  ggplot(aes(reorder(treatment2, mean_yld), mean_yld, 
-             color = factor(harvest_season),
-             shape = trial_code)) +
-  geom_point(size = 3) +
+  ggplot(aes(reorder(treatment2, harvest_season), mean_yld, 
+             shape = factor(harvest_season))) +
+  geom_point(size = 2) +
   geom_errorbar(aes(ymin = mean_yld - sd_yld, ymax = mean_yld + sd_yld),
-                width = 0.3) +
-  theme(legend.position = "right", 
-        axis.text.x = element_text(angle = 90, hjust = 1)) +
+                width = 0.1) +
+  theme(legend.position = "top",  axis.text.x=element_blank()) +
    labs(
-    y = "Mean yield (kg/ha)",
-    x = "Trial code",
-    color = "Harvest season",
-    shape = "Location"
+    y = "UNT Yield (kg/ha)",
+    x = "Trial",
+    shape = "Harvest season"
   )+
+    ylim(0, 7000)+
   scale_color_tableau()+
-  facet_wrap(~harvest_season, scales = "free_x")
+  facet_wrap(~trial_code, scales = "free_x", ncol = 6)
+
+p1_yield_trials
   
-```
-
-
-Now, let's have a look at the variation in severity by planting date, irrespectively of the trial location. 
-
-
-```{r fig.height=5, fig.width=8}
-dataws %>%
-  filter(treatment == "UNT") %>%
-  filter(sev > 0) %>%
-  unite("treatment2", c("trial_number", "treatment"), remove = F) %>%
-  ggplot(aes(reorder(planting_month, planting_order), sev, 
-             fill = factor(harvest_season))) +
-  
-  geom_boxplot()+
-  
-  facet_wrap(~trial_code, scales = "free_x", ncol = 5) +
-  theme(legend.position = "right") +
- 
-  scale_fill_tableau()+
-  labs(x = "Planting month", y = "SBR Severity (%)", color = "Harvest season")
-```
-
-
-Let's have a look at the variation in soybean rust severity in the nontreated check across the locations.
-
-```{r fig.height=5, fig.width=8}
-dataws %>%
-  filter(treatment == "UNT") %>%
-  filter(sev > 0) %>%
-  unite("treatment2", c("trial_number", "treatment"), remove = F) %>%
-  ggplot(aes(trial_code, sev, fill = factor(harvest_season))) +
-  geom_boxplot()+
-   facet_wrap(~trial_code, scales = "free_x", ncol = 5) +
-  theme(legend.position = "right") +
-  scale_color_tableau() +
-  scale_fill_tableau()+
-  labs(x = "Location", y = "SBR Severity (%)", color = "Harvest season")
-```
-
-
-We repeat the procedure for producing the yield plots.
-
-
-```{r, message=FALSE, warning=FALSE}
-dataws %>%
-  filter(treatment == "UNT") %>%
-  filter(sev > 0) %>%
-  unite("treatment2", c("trial_number", "treatment"), remove = F) %>%
-  ggplot(aes(reorder(planting_month, planting_order), yld, 
-             fill = factor(harvest_season))) +
-  geom_boxplot()+
-  facet_wrap(~trial_code, scales = "free_x", ncol = 2) +
-  theme(legend.position = "right") +
-  scale_fill_tableau() +
-  labs(x = "Planting month", y = "Baseline yield (kg/ha)", color = "Harvest season")
-```
-
-Yield by location.
-
-
-```{r fig.height=5, fig.width=8, message=FALSE, warning=FALSE}
-dataws %>%
-  filter(treatment == "UNT") %>%
-  filter(sev > 0) %>%
-  unite("treatment2", c("trial_number", "treatment"), remove = F) %>%
-  ggplot(aes(trial_code, yld, fill = factor(harvest_season))) +
-  geom_boxplot()+
-  
-  facet_wrap(~trial_code, scales = "free_x", ncol = 5) +
-  theme(legend.position = "right") +
-  scale_fill_tableau() +
-  labs(x = "Location", y = "Baseline yield (kg/ha)", fill = "Harvest season")
 ```
 
 
@@ -261,13 +194,18 @@ Here we will produce a boxplot to depict the variation in severity for each of t
 
 
 ```{r}
-dataws %>%
+p1_sev <- dataws %>%
   filter(sev > 0) %>%
   ggplot(aes(treatment, sev, fill = treatment_type)) +
-  geom_boxplot(alpha = 0.7, outlier.colour = NA) +
-  geom_jitter(width = 0.1, shape = 1, color = "grey30", alpha = 0.5) +
-  scale_fill_viridis_d() +
-  labs(x = "Treatment", y = "SBR Severity", fill = "System")
+  geom_boxplot(alpha = 1, outlier.colour = NA) +
+  geom_jitter(width = 0.1, shape = 1, color = "grey30", alpha = 0.5)+
+  theme(legend.position = "none")+
+   
+geom_jitter(width = 0.1, size = 1, color = "grey70", shape = 16, alpha = 0.5)+ theme(legend.position = "none")+
+
+ scale_fill_futurama() +
+    ylim(0, 106)+
+  labs(x = "Treatment", y = "SBR Severity (%)", fill = "System")
 ```
 
 ### Overall yield
@@ -276,30 +214,52 @@ We do the same for yield to compare the treatments with regards yied response.
 
 
 ```{r}
-dataws %>%
+
+p1_yield <- dataws %>%
   filter(yld > 0) %>%
   ggplot(aes(treatment, yld, fill = treatment_type)) +
-  geom_boxplot(alpha = 0.7, outlier.colour = NA) +
-  geom_jitter(width = 0.1, shape = 1, color = "grey30", alpha = 0.5) +
-  scale_fill_viridis_d() +
+  geom_boxplot(alpha = 1, outlier.colour = NA) +
+  
+geom_jitter(width = 0.1, size = 1, color = "grey70", shape = 16, alpha = 0.5)+ theme(legend.position = "none")+
+  theme(legend.position = "none")+
+  ylim(0, 7000)+
+  scale_fill_futurama() +
   labs(x = "Treatment", y = "Soybean yield (kg/ha)", fill = "System")
+```
+
+
+
+## Figure 1
+
+Distribution of severity and yield across treatments.
+
+```{r fig.height=6, fig.width=9}
+library(cowplot)
+
+legend_b <- get_legend(
+p1_sev +
+guides(color = guide_legend(nrow = 1)) +
+theme(legend.position = "bottom")
+)
+
+prow <- plot_grid( p1_sev,p1_yield,  ncol = 1, align = "h", axis = "bt", labels = LETTERS )
+plot_grid(prow, legend_b, ncol = 1, rel_heights = c(1, .1))
+ggsave("figs/figure1.png", dpi = 300, width =5, height =9)
+
+
 ```
 
 
 ### Number of sprays
 
-Let's visualize the frequency of the number of sprays per treatment across the trials, first using histograms.
+Let's obtain the mean and median number of sprays per treatment.
 
 ```{r fig.height=3, fig.width=8}
 dataws %>%
   filter(treatment != "UNT") %>%
-  group_by(trial_number, treatment_type, treatment, sev_class) %>%
-  summarize(n_spray2 = mean(n_spray)) %>%
-  ggplot(aes(n_spray2, fill = treatment_type)) +
-  geom_histogram() +
-  theme(legend.position = "none") +
-  facet_wrap(~treatment, ncol = 5) +
-  labs(y = "Treatment", x = "Number of sprays", fill = "System")
+  group_by( treatment_type, treatment) %>%
+  summarize(n_spray2 = median(n_spray),
+            n_spray3 = mean(n_spray)) 
 ```
 
 Another way is to use a jitter plot .
@@ -310,14 +270,94 @@ dataws %>%
   group_by(trial_number, treatment_type, treatment, sev_class) %>%
   summarize(n_spray2 = mean(n_spray)) %>%
   ggplot(aes(treatment, n_spray2, color = treatment_type)) +
+  theme_minimal_hgrid()+
   geom_jitter(width = 0.1, height = 0.1, size = 2)
 ```
+
+
+
+
+
+```{r fig.height=9, fig.width=3}
+
+mean_sprays <- dataws %>%filter(treatment != "UNT") %>%  group_by(treatment) %>% summarize(mean_sprays = (mean(n_spray, na.rm = TRUE)))
+mean_sprays
+```
+
+```{r}
+
+
+p_sprays3 <- dataws %>%
+  filter(treatment != "UNT") %>%
+  ggplot(aes(x = n_spray, fill = treatment_type)) +
+  theme_minimal_hgrid()+
+  geom_bar()+
+   geom_vline(data = mean_sprays, aes(xintercept = mean_sprays), size =1, linetype =2, color = "grey50")+
+  labs(x = "Number of sprays", y = "Frequency")+
+scale_x_continuous(breaks = c(0,1,2,3,4,5,6))+
+  scale_fill_manual(values = c("#c71000ff", "#008ea0ff", "#8a4198ff"))+
+
+  theme(legend.position = "none")+
+  facet_wrap(~treatment, ncol = 1)
+```
+
+Days to first spray
+
+```{r fig.height=9, fig.width=3}
+
+mean_first <- dataws %>%filter(treatment != "UNT") %>%  group_by(treatment) %>% summarize(mean_first = (mean(first_after_planting, na.rm = TRUE)))
+
+p_sprays2 <- dataws %>%
+  filter(treatment != "UNT") %>%
+  ggplot(aes(x = first_after_planting, fill = treatment_type)) +
+  theme_minimal_hgrid()+
+    scale_fill_manual(values = c("#c71000ff", "#008ea0ff", "#8a4198ff"))+
+  labs(y = "Frequency", x = "Days to first spray")+
+
+  geom_histogram(bins = 10, color = "white")+
+  scale_x_continuous(breaks = seq(0,80, 10))+
+  geom_vline(data = mean_first, aes(xintercept = mean_first), size =1, linetype =2, color = "grey50")+
+  theme(legend.position = "none")+
+    facet_wrap(~treatment, ncol = 1)
+```
+
+
+
+Intervals between sprays
+
+```{r fig.height=9, fig.width=3}
+
+
+p_sprays1 <- dataws %>% 
+  filter(treatment != "UNT") %>% 
+  select(treatment_type, treatment, 25:29) %>% 
+  gather(position, value, 3:7) %>% 
+  filter(value != "NA") %>% 
+  
+  ggplot(aes(position, value, fill = treatment_type))+
+  geom_boxplot(outlier.shape = 1, alpha = 0.7, aes(color = treatment_type))+
+  labs(y = "Number of days", x = "Spray interval")+
+ scale_color_manual(values = c("#c71000ff", "#008ea0ff", "#8a4198ff"))+
+    scale_fill_manual(values = c("#c71000ff", "#008ea0ff", "#8a4198ff"))+
+  theme(legend.position = "none")+
+  facet_wrap(~treatment, ncol = 1)
+```
+
+
+## Figure 2
+
+```{r}
+plot_grid(p_sprays3,p_sprays2,p_sprays1, ncol = 3, align = "hv", labels = LETTERS )
+ggsave("figs/figure2.png", width = 9, height =8)
+```
+
+
 
 
 Now let's calculate the mean and standard deviation of the number of sprays.
 
 ```{r fig.height=4, fig.width=8}
-
+theme_set(theme_minimal_hgrid())
 mean_sprays <- dataws %>%
   filter(treatment != "UNT") %>%
   group_by(trial_number, treatment_type, treatment, sev_class) %>%
@@ -342,9 +382,11 @@ mean_sprays %>%
 ```
 
 
+
+
 ## Fungicide efficiency
 
-The fungicide efficiency is an index which takes into account the effect of the fungicide (usually reduction in disease compared to the nontreated check), as well as the number of sprays. In other words, if more sprays are needed for fungicide treatement A to reduce disease to the same level as fungicide treatment B, the less efficient is the fungicide treatment A.
+The fungicide use efficiency is an index which takes into account the effect of the fungicide (usually reduction in disease compared to the nontreated check), as well as the number of sprays. In other words, if more sprays are needed for fungicide treatment A to reduce disease to the same level as fungicide treatment B, the less efficient is the fungicide treatment A.
 
 Before we proceed with further analysis, let's create columns with each of the values of severity and audpc in the check treatment of the trials, which will be needed for our analysis of efficiency for each of these two variables.
 
@@ -388,9 +430,9 @@ datws2 %>%
   filter(n_spray > 0) %>%
   mutate(treatment_eff = ((sev / mean_sev_check) / n_spray) * 100) %>%
   filter(treatment != "UNT") %>%
-  group_by(trial_number, treatment) %>%
-  summarize(mean_treatment_eff = mean(treatment_eff, na.rm = T)) %>%
-  ggplot(aes(treatment, mean_treatment_eff)) +
+  group_by(treatment) %>%
+  #summarize(mean_treatment_eff = mean(treatment_eff, na.rm = T)) %>%
+  ggplot(aes(treatment, treatment_eff)) +
   geom_boxplot(outlier.color = NA) +
   geom_jitter(width = 0.1)
 ```
@@ -424,7 +466,7 @@ Let's first fit the model for severity.
 ```{r}
 library(lme4)
 control_sev <- datws2 %>%
-  mutate(effect_sev = log(sev / mean_sev_check))
+  mutate(effect_sev = log(sev / mean_sev_check +0.1))
 fit1 <- lmer(effect_sev ~ treatment + (1 | trial_number), data = control_sev)
 summary(fit1)
 ```
@@ -440,8 +482,10 @@ Now we calculate the means and compare them statistically using the *emmeans* pa
 
 ```{r}
 library(emmeans)
-m1 <- emmeans(fit1, ~treatment)
-m1 <- CLD(m1)
+m1 <- emmeans(fit1, "treatment")
+multcomp::cld(m1)
+m1 <- data.frame(m1)
+
 m1$emmean2 <- (1 - exp(m1$emmean))*100
 m1$lower.CL2 <- (1 - exp(m1$lower.CL))*100
 m1$upper.CL2 <- (1 - exp(m1$upper.CL))*100
@@ -487,7 +531,7 @@ Means comparison
 
 ```{r}
 m2 <- emmeans(fit2, ~treatment)
-m2 <- cld(m2)
+m2 <- multcomp::cld(m2)
 m2 <- data.frame(m2)
 m2
 ```
@@ -526,8 +570,13 @@ Differently from the disease variables, we will focus on an absolute metric, whi
 control_yld <- datws3 %>%
   mutate(effect_yld = yld - mean_yld_check)
 fit3 <- lmer(effect_yld ~ treatment + (1 | trial_number), data = control_yld)
+fit4 <- lmer(effect_yld ~ treatment*sev_class + (1 | trial_number), data = control_yld)
+anova(fit3, fit4)
+
 summary(fit3)
-Anova(fit2)
+Anova(fit3)
+m_class <- emmeans(fit4, ~treatment*sev_class)
+multcomp::cld(m_class)
 ```
 
 Compare means:
@@ -588,7 +637,7 @@ prof <- datws3 %>%
 Here we set the scenario for the economic analysis. For nows, let's assume fixed values for all trials:
 
 - fungicide price: 25 dol
-- soybean price: 300 dol
+- soybean price: 440 dol
 - operational cost: 10
 - profit: 0 (zero is break even point)
 - number of blocks/reps: 4
@@ -597,9 +646,9 @@ Here we set the scenario for the economic analysis. For nows, let's assume fixed
 
 ```{r}
 prof$fungicide_price <- 25
-prof$soybean_price <- 300
+prof$soybean_price <- 440
 prof$operational_cost <- 10
-prof$profit <- 0 # zero is break even point
+prof$profit <-  0# zero is break even point
 prof$number_blocks <- 4
 
 ```
@@ -627,135 +676,78 @@ prof1 <- prof %>%
   ))
 ```
 
-#### Yield response
 
 Let's plot the yield responses irrespectively of the costs.
 
 ```{r}
-prof1 %>% 
+p_gain <- prof1 %>% 
   ggplot(aes(x= D, fill = delta))+
-  geom_histogram(color = "white", bins = 20)+
+  geom_histogram(color = "white", bins = 20, fill = "steelblue")+
      geom_vline(xintercept =  0.5, linetype = 2)+
-  labs(x = "Yield response from using fungicides",
+  labs(x = "Yield response (D)", y = "Frequency",
        fill = "Risk")
 
 
 ```
 
-#### Yield above break-even
+
 
 Let's plot the yield responses above the break-even point.
 
 ```{r}
-prof1 %>% 
+p_bpoint <- prof1 %>% 
   ggplot(aes(x= delta, fill = delta))+
-  geom_histogram(color = "white", bins = 20)+
+  geom_histogram(color = "white", bins = 20, fill = "steelblue" )+
      geom_vline(xintercept =  0.5, linetype = 2)+
-  labs(x = "Yield response from using fungicides",
+  labs(x = "Yield response to break-even", y = "Frequency",
        fill = "Risk")
 
 
 ```
-
-#### Risk of not-offsetting costs
 
 And now the distribution of treatments with the respective risk of not offsetting the costs.
 
 ```{r}
-prof1 %>% 
+p_risk <- prof1 %>% 
   ggplot(aes(x= ploss, fill = ploss))+
   geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
-         scale_fill_gradient(low='green',  high='darkred')+
+         scale_fill_gradient(low='steelblue',  high='steelblue')+
      geom_vline(xintercept =  0.5, linetype = 2)+
-  labs(x = "Risk of not offsetting cost",
+  theme(legend.position = "none")+
+  labs(x = "Probability of loss", y = "Frequency",
        fill = "Risk")
 
 
 ```
 
 
-##### By treatment
-
-We do the same now conditioned to the treatments.
 
 
-```{r fig.height=6, fig.width=7}
-prof1 %>% 
-  ggplot(aes(x= ploss, fill = ploss))+
-  geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
-       scale_fill_gradient(low='green',  high='darkred')+
-     geom_vline(xintercept =  0.5, linetype = 2)+
-  labs(x = "Risk of not offsetting cost",
-       fill = "Risk")+
-  facet_wrap(~treatment, ncol = 2)
-```
-
-##### By planting date
-
-Here we want to check if there is any effect of planting date on the risk of not-offsetting the cost.
-
-```{r fig.height=5, fig.width=10}
-prof1 %>% 
-  ggplot(aes(x= ploss, fill = ploss))+
-  geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
-       scale_fill_gradient(low='green',  high='darkred')+
-     geom_vline(xintercept =  0.5, linetype = 2)+
-  labs(x = "Risk of not offsetting cost",
-       fill = "Risk", 
-       title = "All locations")+
-  facet_grid(treatment ~ planting_order)
-```
-
-##### Piracicaba
-
-Now we plot only the locations where five plantings were tested. First, Piracicaba.
-
-```{r fig.height=5, fig.width=10}
-prof1 %>% 
-  filter(trial_code == "PIR") %>% 
-  ggplot(aes(x= ploss, fill = ploss))+
-  geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
-       scale_fill_gradient(low='green',  high='darkred')+
-     geom_vline(xintercept =  0.5, linetype = 2)+
-  labs(x = "Risk of not offsetting cost",
-       fill = "Risk", 
-       title = "Piracicaba")+
-  facet_grid(treatment ~ planting_order)
-```
-
-##### Ponta Grossa
+We do the same but now conditioned to the treatments.
 
 
-```{r fig.height=5, fig.width=10}
-prof1 %>% 
-  filter(trial_code == "PG") %>% 
-  ggplot(aes(x= ploss, fill = ploss))+
-  geom_histogram(aes(fill = ..x..), color = "white", bins = 20 ) + 
-       scale_fill_gradient(low='green',  high='darkred')+
-     geom_vline(xintercept =  0.5, linetype = 2)+
-  labs(x = "Risk of not offsetting cost",
-       fill = "Risk", 
-       title = "Ponta Grossa")+
-  facet_grid(treatment ~ planting_order)
-```
-
-##### Using boxplot
-
-Let's visualize another way, using boxplots.
 
 ```{r}
+p_loss_treat <- prof1 %>%
+  ggplot(aes(treatment, ploss, fill = treatment_type, group = treatment)) +
+  geom_boxplot(outlier.colour = "NA") +
+  scale_fill_futurama()+
+  theme(legend.position = "bottom")+
+  labs(x = "Probability of loss", y = "", fill = "System")+
+  geom_jitter(width = 0.05, color = "grey80", size = 2) +
+    geom_hline(yintercept = 0.5, linetype = 2) 
+```
 
-prof1 %>%
-  ggplot(aes(treatment, ploss, group = treatment)) +
-  geom_boxplot() +
-  geom_jitter(aes(color = decision), width = 0.05, size = 3) +
-  geom_hline(yintercept = 0.5) +
-  scale_color_viridis_d()
+## Figure 3
+
+```{r}
+plot_grid( p_gain, p_bpoint, p_risk, p_loss_treat,  ncol = 2, align = "h", axis = "bt", labels = LETTERS )
+ggsave("figs/figure3.png", width = 10, height = 7)
 ```
 
 
 
-### Overall risk of not-offsetting costs
+## Overall mean risk
 
 Now we will summarize the means of risk using the same mixed model we used before to estimate mean control and response. 
 
@@ -763,8 +755,6 @@ Now we will summarize the means of risk using the same mixed model we used befor
 fit1 <- lmer(ploss ~ treatment + (1 | trial_number), data = prof1)
 summary(fit1)
 ```
-
-
 
 ```{r}
 Anova(fit1)
@@ -774,79 +764,19 @@ As we can see, no difference was found among the treatments.
 
 
 ```{r}
-m1 <- emmeans(fit1, ~treatment)
-m1 <- cld(m1)
+library(emmeans)
+m1 <- lsmeans(fit1, ~treatment)
+m1 <- multcomp::cld(m1)
 m1 <- data.frame(m1)
 m1
-```
 
-```{r fig.height=5, fig.width=7}
-m1 %>%
-  ggplot(aes(treatment, emmean)) +
-  geom_col(alpha = 0.6, fill = "gray90", aes(treatment, (emmean + (1 - emmean)))) +
-  geom_col(fill = "orange", alpha = 0.8) +
-  
-  geom_errorbar(color = "gray50", aes(ymin = lower.CL, ymax = upper.CL), width = 0.1) +
-  geom_hline(yintercept = 0.5, linetype = 2) +
-  theme_minimal() +
-  labs(
-    x = "", y = "Mean risk of not-offsetting costs",
-    title = "Soybean rust control ",
-    subtitle = "Warning system value (n = 28 trials) ",
-    caption = "Cost per spray = US$35 and soybean price per ton = US$300"
-  ) +
- 
-  ylim(0, 1) +
-  ggsave("figs/probability.png", width = 6, height = 4)
-```
-
-
-#### Number of sprays and risk
-
-
-Let's see the relationship between the number of sprays and the risk of not-ofsetting the costs.
-
-```{r}
-
-mean_gain %>%
-  filter(treatment != "UNT") %>%
-  mutate(
-    D = meanD,
-    C = mean_sprays * 45,
-    P = 300,
-    profit = (D - (C / (P / 1000))) / sqrt(360000),
-    ploss = 1 - pnorm(profit)
-  ) %>% 
-    ggplot(aes(mean_sprays, ploss))+
-  geom_point()+
- xlim(1,5)+
- ylim(0, 1)
 
 ```
 
 
-#### Number of sprays and yield response
-
-Now, the mean yield difference
 
 
-```{r}
 
-mean_gain %>%
-  filter(treatment != "UNT") %>%
-  mutate(
-    D = meanD,
-    C = mean_sprays * 45,
-    P = 300,
-    profit = (D - (C / (P / 1000))) / sqrt(360000),
-    ploss = 1 - pnorm(profit)
-  ) %>% 
-    ggplot(aes(mean_sprays, D))+
-  geom_point()+
- xlim(1,5)+
- ylim(200, 1500)
-
-```
 
 
 
